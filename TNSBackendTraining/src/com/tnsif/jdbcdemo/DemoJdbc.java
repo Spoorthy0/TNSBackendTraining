@@ -13,20 +13,25 @@ public class DemoJdbc {
 	private static String URL="jdbc:postgresql://localhost:5432/TNS-BackendTraining";
 	private static String sql="select * from student";
 	private static String query="insert into student values(105,'Rishi','DS')";
-	private static String query1="update student set sid=107 where sname='Rishi'";
-	private static String query2="delete from student where sid=107";
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		//Loading the Driver
+		
 		Class.forName(DRIVERNAME);
-		//create connection
+		//establish connection
+		
 		Connection con=DriverManager.getConnection(URL, Username, Password);
 		System.out.println("Connection Established");
-		//create statement
+		//create a statement
+		
 		Statement st=con.createStatement();
-		//EXECUTE STATEMENT
+		
+		//EXECUTE STATEMENT OR QUERY
 		//Retrieving data
+		
 		ResultSet rs=st.executeQuery(sql);
+		//Process the results
+		
 		while(rs.next()) {
 			System.out.print(rs.getInt(1)+"-");
 			System.out.print(rs.getString("sname")+"-");
@@ -39,14 +44,15 @@ public class DemoJdbc {
 		boolean status=st.execute(query);
 		System.out.println("Inserted");
 		
-		//to check table is updated or not
-		boolean state=st.execute(query1);
-		System.out.println("Updated");
+		//UPDATE COMMAND
 		
-		//to check deleted or not
+		int updatedCount=st.executeUpdate("update student set sid=107 where sname='Rishi'");
+		System.out.println(updatedCount+" rows updated");
 		
-		boolean result=st.execute(query2);
-		System.out.println("Deleted");
+		//DELETE COMMAND
+		
+		int deletedCount=st.executeUpdate("delete from student where sid=107");
+		System.out.println(deletedCount+" rows deleted");
 		
 		
 		//Close the connection
