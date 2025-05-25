@@ -39,11 +39,11 @@ public class PreparedStatementEg {
 	        ps.executeUpdate();
 	        
 	        System.out.println("After updating the values are: ");
-	        ResultSet rs1=st.executeQuery("Select * from student");
-	        while(rs1.next()) {
-	        	System.out.print(rs1.getInt(1)+"-");
-	        	System.out.print(rs1.getString(2)+"-");
-	        	System.out.print(rs1.getString(3));
+	        rs=st.executeQuery("Select * from student");
+	        while(rs.next()) {
+	        	System.out.print(rs.getInt(1)+"-");
+	        	System.out.print(rs.getString(2)+"-");
+	        	System.out.print(rs.getString(3));
 	        	System.out.println();
 	        }
 	        
@@ -53,16 +53,16 @@ public class PreparedStatementEg {
 	        ps.setInt(1,108);
 	        ps.executeUpdate();
 	        System.out.println("After deleting the values are : ");
-	        ResultSet rs2=st.executeQuery("Select * from student");
-	        while(rs2.next()) {
-	        	System.out.print(rs2.getInt(1)+"-");
-	        	System.out.print(rs2.getString(2)+"-");
-	        	System.out.print(rs2.getString(3));
+	        rs=st.executeQuery("Select * from student");
+	        while(rs.next()) {
+	        	System.out.print(rs.getInt(1)+"-");
+	        	System.out.print(rs.getString(2)+"-");
+	        	System.out.print(rs.getString(3));
 	        	System.out.println();
 	        }
 	        
 	        con.close();
-	        System.out.println("Connectiion Closed");
+	        System.out.println("Connection Closed");
 			}
 			catch(Exception e) {
 				e.printStackTrace();
